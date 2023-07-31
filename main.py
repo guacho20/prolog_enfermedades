@@ -30,14 +30,15 @@ def diseases():
 
 @app.route("/symptoms")
 def symptoms():
-    return render_template("symptoms.html", data=[])
-
-@app.route("/reset")
-def reset():
-    return redirect(url_for("Index"))
+    datos = list(prolog.query("sintomas(X)"))
+    symptoms = []
+    for fila in datos:
+        data =fila['X'].replace("row(","").replace(")","").split(',')
+        symptoms.append(data)
+    return render_template("symptoms.html", data=symptoms)
 
 @app.route("/diseases", methods=["POST"])
-def search():
+def add_diseases():
     if request.method == "POST":
         name = request.form["name_diase"]
 
@@ -49,6 +50,18 @@ def search():
 
         return redirect(url_for("diseases"))
 
+@app.route("/symptoms", methods=["POST"])
+def add_symptoms():
+    if request.method == "POST":
+        name = request.form["name_symtom"]
+
+        print(name)
+
+        list(prolog.query("es_sintoma(" + name + ",X)"))
+  
+        flash("Added successfully")
+
+        return redirect(url_for("symptoms"))
 
 # starting the app
 if __name__ == "__main__":

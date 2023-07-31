@@ -12,12 +12,18 @@ es_enfermedad(A,X) :-
                 'INSERT INTO diseases(name) VALUES (\'~w\')'-[A],
                 affected(X)).
 
+es_sintoma(A,X) :-
+    abrir_conexion,
+    odbc_query('postgresql',
+                'INSERT INTO symptoms(name) VALUES (\'~w\')'-[A],
+                affected(X)).
+
 enfermedades(X):-
     abrir_conexion,
     odbc_query('postgresql','SELECT id, name FROM diseases ORDER BY id DESC ', X). 
 
 sintomas(X):-
     abrir_conexion,
-    odbc_query('postgresql','SELECT * FROM symptoms', X). 
+    odbc_query('postgresql','SELECT id, name FROM symptoms', X). 
 
     
