@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row flex-nowrap justify-content-between align-items-center py-2 pb-4">
+    <div class="col-4 pt-1">
+        <a class="text-muted" href="#"></a>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center">
+        <a href="{{ url_for('Index') }}" class="btn btn-outline-info btn-block">
+            <i class="fa-solid fa-arrow-left mr-2"></i>
+            Regresar
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="card card-body">
+            <h5 class="card-title">Registrar datos de echo es_padre(x,y)</h5>
+            <form action="{{url_for('Index')}}" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="padre" placeholder="Nombre del padre">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="hijo" placeholder="Nombre del hijo">
+                </div>
+                <button class="btn btn-primary btn-block">
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+        <h5 class="text-md">Lista de hechos registrados</h5>
+        {{ data }}
+    </div>
+</div>
+</div>
+
+{% endblock %}
