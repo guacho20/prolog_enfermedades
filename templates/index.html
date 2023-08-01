@@ -31,5 +31,25 @@
             </a>
         </div>
     </div>
+    <div class="card box-shadow">
+        <div class="card-body">
+            <i class="fa-solid fa-vial-virus text-muted" style="font-size: 6rem;"></i>
+            <h1 class="text-title pt-2">Administración de enfermeda con sintoma</h1>
+            <a href="{{ url_for('diseasebysymptom') }}" class="btn btn-primary btn-block">
+                <i class="fa-solid  fa-paper-plane mr-2"></i>
+                Ingresar
+            </a>
+        </div>
+    </div>
+    <div class="card box-shadow">
+        <div class="card-body">
+            <i class="fa-solid fa-vial-virus text-muted" style="font-size: 6rem;"></i>
+            <h1 class="text-title pt-2">Administración de enfermedas con tratamiento</h1>
+            <a href="{{ url_for('diseasebytreatment') }}" class="btn btn-primary btn-block">
+                <i class="fa-solid  fa-paper-plane mr-2"></i>
+                Ingresar
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}

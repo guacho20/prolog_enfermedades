@@ -12,38 +12,67 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
-        {% with messages = get_flashed_messages() %}
+    <div class="col-md-12">
+        {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        {% for message in messages %}
+        {% for category,message in messages %}
+        {% if category == "error" %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% if category == "info" %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        {% endif %}
         {% endfor %}
         {% endif %}
         {% endwith %}
+
+
+        {% if data %}
         <div class="card card-body">
-            <h5 class="card-title">Registrar datos de echo es_padre(x,y)</h5>
-            <form action="{{url_for('Index')}}" method="POST">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="padre" placeholder="Nombre del padre">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="hijo" placeholder="Nombre del hijo">
-                </div>
-                <button class="btn btn-primary btn-block">
-                    Guardar
+            <form action="{{url_for('test')}}" method="POST">
+                <fieldset class="form-group">
+                    <legend>Seleccione los sintomas</legend>
+                    {% for contact in data %}
+                    <tr>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="frutas[]" value="{{contact[0]}}">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{contact[1]}}
+                            </label>
+                        </div>
+                    </tr>
+                    {% endfor %}
+                </fieldset>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Diagnosticar
                 </button>
             </form>
+            <div class="card border-info mb-3">
+                <div class="card-body text-center">
+                    <p class="bs-component">La figura geométrica es:</p>
+                    <h4 class="card-title uppercase text-info">{{ message }}</h4>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-6">
+        {% else%}
+        <div class="card border-info mb-3">
+            <div class="card-body text-center">
+                <p class="bs-component" style="font-size: 18px;">Ingrese la base de las enfermedades, sintomas y tratamiento para realizar el test diagnostico.</p>
+                <i style="font-size: 5rem;" class="fa-solid fa-database text-secondary"></i>
+            </div>
+        </div>
+        {% endif %}
 
-        <h5 class="text-md">Lista de hechos registrados</h5>
-        {{ data }}
     </div>
 </div>
 </div>
