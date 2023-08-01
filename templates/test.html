@@ -15,8 +15,11 @@
     <div class="col-md-6">
         {% if data %}
         <div class="card card-body">
-            <legend style="font-size: 1rem;">Sintomas que padese</legend>
             <form action="{{url_for('test')}}" method="POST">
+                <button type="submit" class="btn btn-info btn-block">
+                    Diagnosticar
+                </button>
+                <legend style="font-size: 1rem;" class="text-info">Sintomas que padese</legend>
                 <fieldset class="form-group">
                     {% for contact in data %}
                     <tr>
@@ -29,15 +32,14 @@
                     </tr>
                     {% endfor %}
                 </fieldset>
-                <button type="submit" class="btn btn-primary btn-block">
-                    Diagnosticar
-                </button>
+
             </form>
         </div>
         {% else%}
         <div class="card border-info mb-3">
             <div class="card-body text-center">
-                <p class="bs-component" style="font-size: 18px;">Ingrese la base de las enfermedades, sintomas y tratamiento para realizar el test diagnostico.</p>
+                <p class="bs-component" style="font-size: 18px;">Ingrese la base de las enfermedades, sintomas y
+                    tratamiento para realizar el test diagnostico.</p>
                 <i style="font-size: 5rem;" class="fa-solid fa-database text-secondary"></i>
             </div>
         </div>
@@ -63,12 +65,27 @@
         </div>
         {% endif %}
         {% if category == "info" %}
+        {% if message[1] %}
+        <div class="my-3 p-3 card rounded box-shadow  border-primary">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Usted puede padecer de estas enfermedades:</h6>
+            {% for contact in message %}
+            <div class="media text-muted py-1">
+                <i class="fa-solid fa-heart-circle-check mr-2 rounded p-2 text-white bg-info"></i>
+                <p class="media-body mb-0 small lh-125 border-bottom border-gray" style="text-align: justify;">
+                    <strong class="d-block text-info uppercase" style="font-weight: bold; font-size: 13px;">{{contact[0]}}</strong>
+                    <span class="text-muted " ><strong>Tratamiento: </strong>{{contact[1]}}</span>
+
+                </p>
+            </div>
+            {% endfor %}
+        {% else%}
         <div class="card border-info mb-3">
             <div class="card-body text-center">
-                <p class="bs-component">USTED PADECE DE:</p>
-                <h4 class="card-title uppercase text-info">{{ message }}</h4>
+                <p class="bs-component">USTED PADECE DE: <span class="text-info" style="font-size: 16px; font-weight: bold;">{{ message[0][0] }}</span></p>
+                <h4 class="card-title" style="font-size: 15px; text-align: justify;">Tratamiento: <span class="text-muted" style="font-weight: normal;">{{ message[0][1] }}</span></h4>
             </div>
         </div>
+        {% endif %}
         {% endif %}
         {% endfor %}
         {% endif %}
