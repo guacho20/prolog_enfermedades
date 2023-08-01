@@ -122,7 +122,7 @@ def diagnostic():
 
         list(prolog.query("tiene_tratamiento("+enfermedad+"," + replace_space_by_underscore(tratamiento) + ",X)")) """
   
-        flash("Added successfully", 'info')
+        flash("Anemia", 'info')
 
 
         return redirect(url_for("test"))

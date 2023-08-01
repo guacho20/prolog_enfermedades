@@ -1,20 +1,30 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="card text-center p-4">
+    <i class="fa-solid fa-stethoscope text-muted" style="font-size: 4rem;"></i>
+    <h1 class="h3 my-3 font-weight-normal" style="font-size: 1.3rem;">Consulta de diagnostico de enfermedad</h1>
+    <a href="{{ url_for('test') }}" class="btn btn-info btn-block">
+        <i class="fa-solid  fa-paper-plane mr-2"></i>
+        Realizar consulta
+    </a>
+</div>
+<hr>
+<div class="card-title">Administración</div>
 <div class="card-deck mb-3 text-center">
-    <div class="card box-shadow">
+    <!-- <div class="card box-shadow">
         <div class="card-body">
-            <i class="fa-solid fa-spell-check text-muted" style="font-size: 6rem;"></i>
+            <i class="fa-solid fa-spell-check text-muted" style="font-size: 4rem;"></i>
             <h1 class="text-title pt-2">Realizar test</h1>
             <a href="{{ url_for('test') }}" class="btn btn-primary btn-block">
                 <i class="fa-solid  fa-paper-plane mr-2"></i>
                 Ingresar
             </a>
         </div>
-    </div>
+    </div> -->
     <div class="card box-shadow">
         <div class="card-body">
-            <i class="fa-solid fa-flask-vial text-muted" style="font-size: 6rem;"></i>
-            <h1 class="text-title pt-2">Administración de enfermedades</h1>
+            <i class="fa-solid fa-flask-vial text-muted" style="font-size: 4rem;"></i>
+            <h1 class="text-title pt-2">Enfermedades</h1>
             <a href="{{ url_for('diseases') }}" class="btn btn-primary btn-block">
                 <i class="fa-solid  fa-paper-plane mr-2"></i>
                 Ingresar
@@ -23,8 +33,8 @@
     </div>
     <div class="card box-shadow">
         <div class="card-body">
-            <i class="fa-solid fa-vial-virus text-muted" style="font-size: 6rem;"></i>
-            <h1 class="text-title pt-2">Administración de sintomas</h1>
+            <i class="fa-solid fa-vial-virus text-muted" style="font-size: 4rem;"></i>
+            <h1 class="text-title pt-2">Sintomas</h1>
             <a href="{{ url_for('symptoms') }}" class="btn btn-primary btn-block">
                 <i class="fa-solid  fa-paper-plane mr-2"></i>
                 Ingresar
@@ -33,8 +43,8 @@
     </div>
     <div class="card box-shadow">
         <div class="card-body">
-            <i class="fa-solid fa-vial-virus text-muted" style="font-size: 6rem;"></i>
-            <h1 class="text-title pt-2">Administración de enfermeda con sintoma</h1>
+            <i class="fa-solid fa-virus text-muted" style="font-size: 4rem;"></i>
+            <h1 class="text-title pt-2">Enfermeda con sintoma</h1>
             <a href="{{ url_for('diseasebysymptom') }}" class="btn btn-primary btn-block">
                 <i class="fa-solid  fa-paper-plane mr-2"></i>
                 Ingresar
@@ -43,8 +53,8 @@
     </div>
     <div class="card box-shadow">
         <div class="card-body">
-            <i class="fa-solid fa-vial-virus text-muted" style="font-size: 6rem;"></i>
-            <h1 class="text-title pt-2">Administración de enfermedas con tratamiento</h1>
+            <i class="fa-solid fa-vial-circle-check text-muted" style="font-size: 4rem;"></i>
+            <h1 class="text-title pt-2">Enfermedas con tratamiento</h1>
             <a href="{{ url_for('diseasebytreatment') }}" class="btn btn-primary btn-block">
                 <i class="fa-solid  fa-paper-plane mr-2"></i>
                 Ingresar
